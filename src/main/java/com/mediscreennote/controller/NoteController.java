@@ -1,6 +1,7 @@
 package com.mediscreennote.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,10 +28,10 @@ public class NoteController {
 static final Logger logger = LogManager.getLogger(NoteController.class);
 	
 	@Autowired
-	private NoteRepository NoteRepository;
+	private NoteRepository noteRepository;
 	
 	@Autowired
-	private INoteService NoteService;
+	private INoteService noteService;
 	
 	@GetMapping("/")
 	public String index() {
@@ -38,21 +40,24 @@ static final Logger logger = LogManager.getLogger(NoteController.class);
 	
 	@GetMapping(value = "/notes")
 	public List<Note> getAllPatientNote(Long patientId) {
-		return NoteRepository.findByPatientId(patientId);
+		return noteRepository.findByPatientId(patientId);
 	}
 	
 	@PostMapping(value="note")
 	@ResponseBody
 	public ResponseEntity<Response> addNoteToPatient(@NonNull @RequestBody final Note patientNote) {
 		logger.info("create note()");
-		return NoteService.addNoteToPatient(patientNote);
+		return noteService.addNoteToPatient(patientNote);
 	}
 	
 	@PutMapping( value = "/noteUpdated")
 	public ResponseEntity<Response> updateNote(@RequestBody Note patientNote) {
 		logger.info("update a note");
-		return NoteService.updatePatientNote(patientNote);
+		return noteService.updatePatientNote(patientNote);
 			
 	}
-
+	@GetMapping(value = "/noteById")
+	public Note getNoteById(@RequestParam String idNote) {
+		return noteRepository.findById(idNote).orElse(null);
+	}
 }

@@ -68,6 +68,7 @@ public class NoteService implements INoteService {
 		
 		}
  		existingNote.setNote(note.getNote());
+ 		existingNote.setPatientId(note.getPatientId());
 		noteRepository.save(note);
 		
 		new Utility().createResponseWithSuccess(response, note);
