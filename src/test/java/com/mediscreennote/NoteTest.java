@@ -35,28 +35,36 @@ public class NoteTest {
 	
 	@Autowired
 	private MongoTemplate mongoTemplate;
-    private String collectionName = "note";
+    private String collectionName = "mediscreentest";
 
-    /*@BeforeEach
+    @BeforeEach
     public void setup() {
-        mongoTemplate.createCollection("note");
+        mongoTemplate.createCollection("mediscreentest");
     }
 
     @AfterEach
     public void clean() {
-        mongoTemplate.dropCollection("note");
-    }*/
+        mongoTemplate.dropCollection("mediscreentest");
+    }
 
     @Test
     public void getAllNoteForPatient() {
 
-        Note note = new Note();
-        note.setId("1");
-        note.setNote("note");
-        note.setPatientId(1L);
-        noteRepository.insert(note);
+        Note note1 = new Note();
+        note1.setId("1");
+        note1.setNote("note");
+        note1.setPatientId(1L);
+        noteRepository.insert(note1);
+        
+        Note note2 = new Note();
+        note2.setId("2");
+        note2.setNote("note");
+        note2.setPatientId(1L);
+        noteRepository.insert(note2);
         List<Note> noteResult = noteRepository.findByPatientId(1L);
-        assertEquals(noteResult.size(), 1);
+        
+        assertNotEquals(Collections.EMPTY_LIST, noteResult.size());
+        //assertEquals(noteResult.size(), 2);
     }
 
     @Test
