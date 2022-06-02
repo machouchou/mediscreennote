@@ -34,10 +34,10 @@ public class NoteService implements INoteService {
 	}
 
 	@Override
-	public List<Note> getAllNote(Long patientId) {
+	public List<Note> getAllNote(int patientId) {
 		return noteRepository.findByPatientId(patientId);
 	}
-
+	
 	@Override
 	public ResponseEntity<Response> addNoteToPatient(Note note) {
 		
@@ -74,7 +74,5 @@ public class NoteService implements INoteService {
 		new Utility().createResponseWithSuccess(response, note);
 		
 		return new ResponseEntity<>(response, HttpStatus.OK); 
-	}
-
-	
+	}	
 }

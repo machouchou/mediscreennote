@@ -11,7 +11,7 @@ public class Note {
     private String id;
 	
 	@Indexed
-    private Long patientId;
+    private int patientId;
    
     private String note;
     
@@ -19,13 +19,13 @@ public class Note {
 		super();
 	}
 
-	public Note(Long patientId, String note) {
+	public Note(int patientId, String note) {
 		super();
 		this.patientId = patientId;
 		this.note = note;
 	}
 
-	public Note(String id, Long patientId, String note) {
+	public Note(String id, int patientId, String note) {
 		super();
 		this.id = id;
 		this.patientId = patientId;
@@ -40,11 +40,11 @@ public class Note {
 		this.id = id;
 	}
 
-	public Long getPatientId() {
+	public int getPatientId() {
 		return patientId;
 	}
 
-	public void setPatientId(Long patientId) {
+	public void setPatientId(int patientId) {
 		this.patientId = patientId;
 	}
 

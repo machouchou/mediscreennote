@@ -53,15 +53,15 @@ public class NoteTest {
         Note note1 = new Note();
         note1.setId("1");
         note1.setNote("note");
-        note1.setPatientId(1L);
+        note1.setPatientId(1);
         noteRepository.insert(note1);
         
         Note note2 = new Note();
         note2.setId("2");
         note2.setNote("note");
-        note2.setPatientId(1L);
+        note2.setPatientId(1);
         noteRepository.insert(note2);
-        List<Note> noteResult = noteRepository.findByPatientId(1L);
+        List<Note> noteResult = noteRepository.findByPatientId(1);
         
         assertNotEquals(Collections.EMPTY_LIST, noteResult.size());
         //assertEquals(noteResult.size(), 2);

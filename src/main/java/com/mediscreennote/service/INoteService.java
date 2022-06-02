@@ -9,7 +9,7 @@ import com.mediscreennote.model.Response;
 
 public interface INoteService {
 	
-	List<Note> getAllNote(Long patientId);
+	List<Note> getAllNote(int patientId);
 	
 	ResponseEntity<Response> addNoteToPatient(Note note);
 
