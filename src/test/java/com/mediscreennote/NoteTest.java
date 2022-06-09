@@ -39,12 +39,8 @@ public class NoteTest {
 
     @BeforeEach
     public void setup() {
-        mongoTemplate.createCollection("mediscreentest");
-    }
-
-    @AfterEach
-    public void clean() {
-        mongoTemplate.dropCollection("mediscreentest");
+    	mongoTemplate.dropCollection("notes");
+        mongoTemplate.createCollection("notes");
     }
 
     @Test
@@ -64,7 +60,7 @@ public class NoteTest {
         List<Note> noteResult = noteRepository.findByPatientId(1);
         
         assertNotEquals(Collections.EMPTY_LIST, noteResult.size());
-        //assertEquals(noteResult.size(), 2);
+        assertEquals(noteResult.size(), 2);
     }
 
     @Test
