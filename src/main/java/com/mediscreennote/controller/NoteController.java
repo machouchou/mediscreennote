@@ -40,6 +40,7 @@ static final Logger logger = LogManager.getLogger(NoteController.class);
 	
 	@GetMapping(value = "/notes")
 	public List<Note> getAllPatientNote(int patientId) {
+		logger.info("retrieve all patient notes");
 		return noteRepository.findByPatientId(patientId);
 	}
 	
@@ -58,6 +59,7 @@ static final Logger logger = LogManager.getLogger(NoteController.class);
 	}
 	@GetMapping(value = "/noteById")
 	public Note getNoteById(@RequestParam String idNote) {
+		logger.info("retrieve note by idNote");
 		return noteRepository.findById(idNote).orElse(null);
 	}
 }

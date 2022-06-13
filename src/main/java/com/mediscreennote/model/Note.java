@@ -1,5 +1,7 @@
 package com.mediscreennote.model;
 
+import java.util.Objects;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -61,4 +63,22 @@ public class Note {
 		return "PatientNote [id=" + id + ", patientId=" + patientId + ", note=" + note + "]";
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, note, patientId);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Note other = (Note) obj;
+		return Objects.equals(id, other.id) && Objects.equals(note, other.note) && patientId == other.patientId;
+	}
+
+	
 }

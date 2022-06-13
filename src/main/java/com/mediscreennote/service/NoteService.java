@@ -38,6 +38,7 @@ public class NoteService implements INoteService {
 		return noteRepository.findByPatientId(patientId);
 	}
 	
+	
 	@Override
 	public ResponseEntity<Response> addNoteToPatient(Note note) {
 		
@@ -74,5 +75,5 @@ public class NoteService implements INoteService {
 		new Utility().createResponseWithSuccess(response, note);
 		
 		return new ResponseEntity<>(response, HttpStatus.OK); 
-	}	
+	}
 }
